@@ -474,7 +474,7 @@ section.show {
     text-align: center;
   }
   
-  .hero-img { order: -1; margin: 0 auto; }
+  .hero-img { order: -1; margin: 22px auto; }
   
   /* FIX: Ensure About Info stays in one column on mobile without breaking */
   .about-info { 
