@@ -29,7 +29,7 @@
       </div>
     </header>
 
-    <section id="home" class="hero-pro">
+    <section id="home" class="hero-pro" style="opacity: 1; transform: none;">
       <div class="hero-container">
         <div class="hero-text glass-card">
           <h1>Hello, I'm <span>Krunal Prajapati</span></h1>
@@ -67,7 +67,7 @@
           <div class="about-info">
             <div class="glass-inner"><i class="fa-solid fa-graduation-cap"></i> <b>Education:</b> BCA Student</div>
             <div class="glass-inner"><i class="fa-solid fa-location-dot"></i> <b>Location:</b> Gujarat, India</div>
-            <div class="glass-inner" style="grid-column: span 2;"><i class="fa-solid fa-envelope"></i> <b>Email:</b> prajapatikrunal9090@gmail.com</div>
+            <div class="glass-inner email-box"><i class="fa-solid fa-envelope"></i> <b>Email:</b> prajapatikrunal9090@gmail.com</div>
           </div>
           <div class="about-tags">
             <span>Web Development</span>
@@ -289,7 +289,7 @@
       };
 
       // Scroll Animation
-      const sections = document.querySelectorAll("section");
+      const sections = document.querySelectorAll("section:not(#home)");
       window.addEventListener("scroll", () => {
         sections.forEach((sec) => {
           if (window.scrollY > sec.offsetTop - 500) {
