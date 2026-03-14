@@ -1,3 +1,8 @@
+/* GLOBAL FIX: Prevents padding from breaking widths */
+* {
+  box-sizing: border-box;
+}
+
 /* General & Smooth Scroll */
 html {
   scroll-behavior: smooth;
@@ -23,6 +28,8 @@ body {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   padding: 30px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  word-wrap: break-word; /* FIX: Prevents long text/links from overflowing */
+  overflow-wrap: break-word;
 }
 
 .glass-nav {
@@ -42,6 +49,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  word-break: break-all; /* FIX: Stops email from breaking out of box */
 }
 /* ------------------------------------------------------------- */
 
@@ -211,6 +219,9 @@ section.show {
   gap: 15px;
   margin: 20px 0;
 }
+.email-box {
+  grid-column: span 2;
+}
 
 .about-tags span {
   background: linear-gradient(135deg, #4a6cff, #6e8aff);
@@ -225,8 +236,9 @@ section.show {
 
 /* Skills Section (With Professional Titles) */
 .skills-grid {
+  /* FIX: Ensure grid doesn't break out on small screens */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 25px;
 }
 
@@ -278,7 +290,7 @@ section.show {
 /* Services Section */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 30px;
 }
 .service-card {
@@ -326,7 +338,7 @@ section.show {
 /* Projects & More */
 .projects-grid, .more-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 30px;
 }
 .project-card:hover, .more-card:hover { transform: translateY(-8px); }
@@ -352,14 +364,18 @@ section.show {
 }
 .contact-info p { font-size: 16px; margin: 15px 0; display: flex; align-items: center; gap: 10px; }
 .contact-info p i { color: #4a6cff; font-size: 20px;}
-.social-links { margin-top: 20px; }
+.social-links { 
+  margin-top: 20px; 
+  display: flex;
+  flex-wrap: wrap; /* FIX: Prevent links from breaking row */
+  gap: 15px;
+}
 .social-links a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 50px;
   height: 50px;
-  margin-right: 15px;
   border-radius: 15px;
   background: rgba(255,255,255,0.4);
   border: 1px solid rgba(255,255,255,0.5);
@@ -418,7 +434,7 @@ section.show {
   max-width: 1200px;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
   gap: 40px;
 }
 .footer-col h3, .footer-col h4 { color: #fff; margin-bottom: 20px; }
@@ -449,14 +465,29 @@ section.show {
   .nav-links a { margin: 15px 0; }
   .dark-btn { margin: 15px auto; }
 
+  /* FIX: Adjust Section Widths & Paddings for Mobile */
+  section { width: 95%; margin: 40px auto; }
+  .glass-card { padding: 20px; } 
+
   .hero-container, .about-grid, .contact-grid {
     grid-template-columns: 1fr;
     text-align: center;
   }
   
   .hero-img { order: -1; margin: 0 auto; }
-  .about-info { grid-template-columns: 1fr; }
+  
+  /* FIX: Ensure About Info stays in one column on mobile without breaking */
+  .about-info { 
+    grid-template-columns: 1fr; 
+    display: flex;
+    flex-direction: column;
+  }
+  .email-box { grid-column: 1; }
+
   .about-image img { width: 80%; margin: 0 auto; }
+  
+  /* FIX: Timeline padding on mobile */
+  .timeline-content { padding: 15px; }
 }
 
 /* ---------------- PREMIUM DARK MODE ---------------- */
